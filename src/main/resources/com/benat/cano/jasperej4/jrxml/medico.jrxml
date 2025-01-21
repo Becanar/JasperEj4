@@ -74,14 +74,14 @@
 			</line>
 			<textField>
 				<reportElement x="130" y="30" width="100" height="20" uuid="34f44bb1-61b1-41c9-894a-641ba0de3c16"/>
-				<textFieldExpression><![CDATA[$P{NOMPAC}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{DIRECCION}]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="130" y="45" width="414" height="1" uuid="aa39b58a-cb42-4586-b2ac-f0f2d0f2cfec"/>
 			</line>
 			<textField>
 				<reportElement x="130" y="50" width="100" height="20" uuid="fd03d49e-e7ab-4c37-bfa2-599a21aa8c56"/>
-				<textFieldExpression><![CDATA[$P{NOMPAC}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{NUMERO}]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="130" y="66" width="414" height="1" uuid="be572e45-2dae-4ef9-b36e-b5ac1857000a">

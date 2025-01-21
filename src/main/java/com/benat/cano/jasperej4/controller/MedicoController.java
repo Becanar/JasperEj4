@@ -1,20 +1,23 @@
 package com.benat.cano.jasperej4.controller;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
+
+import java.io.InputStream;
+import java.util.HashMap;
 
 public class MedicoController {
 
     @FXML
-    private VBox boxGeneral
-            ;
+    private VBox boxGeneral;
 
     @FXML
     private Button btGenerar;
@@ -81,17 +84,124 @@ public class MedicoController {
 
     @FXML
     void informe(ActionEvent event) {
+        if (validar()) {
+            try {
+                HashMap<String, Object> parameters = new HashMap<>();
 
+                parameters.put("NUMERO", txtNum.getText());
+                parameters.put("NOMPAC", txtNomPac.getText());
+                parameters.put("DIRECCION", txtDir.getText());
+                parameters.put("CODIGO", txtCod.getText());
+                parameters.put("NOMMED", txtNomMed.getText());
+                parameters.put("ESPECIALIDAD", txtEsp.getText());
+                parameters.put("TRATAMIENTO", txtTrat.getText());
+
+                String imagePath = getClass().getResource("/com/benat/cano/jasperej4/img/logo.png").toString();
+                parameters.put("IMAGE", imagePath);
+                InputStream reportStream = getClass().getResourceAsStream("/com/benat/cano/jasperej4/jasper/medico.jasper");
+                JasperReport jasperReport = (JasperReport) JRLoader.loadObject(reportStream);
+                JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, new JREmptyDataSource());
+
+                JasperViewer viewer = new JasperViewer(jasperPrint, false);
+                viewer.setVisible(true);
+
+            } catch (JRException e) {
+                System.err.println(e.getMessage());
+                mostrarAlerta("Ha ocurrido un error cargando el informe");
+            }
+
+        }
+
+    }
+
+    private boolean validar() {
+        StringBuilder error = new StringBuilder();
+
+        if (txtNum.getText().isEmpty()) {
+            try {
+                Integer.parseInt(txtNum.getText());
+                error.append("El Número del Paciente no puede estar vacío!\n");
+            } catch (NumberFormatException e) {
+                error.append("El Número del Paciente no puede estar vacío y debe ser numérico!\n");
+            }
+        }
+
+        if (txtNomPac.getText().isEmpty()) {
+            error.append("El campo de nombre del paciente no puede estar vacío!\n");
+        } else {
+            if (contieneNumeros(txtNomPac.getText())) {
+                error.append("El nombre del paciente no puede contener números!\n");
+            }
+        }
+
+        if (txtDir.getText().isEmpty()) {
+            error.append("El campo de dirección del paciente no puede estar vacío!\n");
+        }
+
+        if (txtCod.getText().isEmpty()) {
+            try {
+                Integer.parseInt(txtCod.getText());
+                error.append("El Código del Médico no puede estar vacío!\n");
+            } catch (NumberFormatException e) {
+                error.append("El Código del Médico no puede estar vacío y debe ser numérico!\n");
+            }
+        }
+
+        if (txtNomMed.getText().isEmpty()) {
+            error.append("El campo de nombre del médico no puede estar vacío!\n");
+        } else {
+            if (contieneNumeros(txtNomMed.getText())) {
+                error.append("El nombre del médico no puede contener números!\n");
+            }
+        }
+
+        if (txtEsp.getText().isEmpty()) {
+            error.append("El campo de especialidad del médico no puede estar vacío!\n");
+        } else {
+            if (contieneNumeros(txtEsp.getText())) {
+                error.append("La especialidad del médico no puede contener números!\n");
+            }
+        }
+
+        if (txtTrat.getText().isEmpty()) {
+            error.append("El campo de tratamiento no puede estar vacío!\n");
+        }
+
+        if (error.length() > 0) {
+            mostrarAlerta(error.toString());
+            return false;
+        }
+
+        return true;
+    }
+
+
+    private boolean contieneNumeros(String texto) {
+        return texto.matches(".*\\d.*");
     }
 
     @FXML
     void limpiar(ActionEvent event) {
-
+        txtCod.setText("");
+        txtDir.setText("");
+        txtEsp.setText("");
+        txtNum.setText("");
+        txtTrat.setText("");
+        txtNomMed.setText("");
+        txtNomPac.setText("");
     }
 
     @FXML
     void salir(ActionEvent event) {
+        Platform.exit();
+    }
 
+    private void mostrarAlerta(String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error de validación");
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
     }
 
 }
