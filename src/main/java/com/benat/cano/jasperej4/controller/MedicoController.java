@@ -1,6 +1,4 @@
 package com.benat.cano.jasperej4.controller;
-
-import com.benat.cano.jasperej4.db.ConectorDB;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -20,7 +18,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class SuperController {
+public class MedicoController {
 
     @FXML
     private Button btGraficos;
@@ -34,7 +32,7 @@ public class SuperController {
     @FXML
     private Button btTabProductos;
 
-    private static final Logger LOGGER = Logger.getLogger(SuperController.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(MedicoController.class.getName());
 
     @FXML
     void infoGraficos(ActionEvent event) {
