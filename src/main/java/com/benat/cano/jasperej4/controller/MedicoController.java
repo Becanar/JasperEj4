@@ -13,7 +13,8 @@ import javafx.scene.layout.VBox;
 public class MedicoController {
 
     @FXML
-    private VBox boxGeneral;
+    private VBox boxGeneral
+            ;
 
     @FXML
     private Button btGenerar;

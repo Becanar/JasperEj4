@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.6.final using JasperReports Library version 6.20.6-5c96b6aa8a39ac1dc6b6bea4b81168e16dd39231  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="medico" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="af7be517-68df-4648-8f3f-a6dab1ac02cd">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="IMAGE" class="java.lang.String"/>
+	<parameter name="NUMERO" class="java.lang.String"/>
+	<parameter name="NOMPAC" class="java.lang.String"/>
+	<parameter name="DIRECCION" class="java.lang.String"/>
+	<parameter name="CODIGO" class="java.lang.String"/>
+	<parameter name="NOMMED" class="java.lang.String"/>
+	<parameter name="ESPECIALIDAD" class="java.lang.String"/>
+	<parameter name="TRATAMIENTO" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="82">
+			<image>
+				<reportElement x="30" y="0" width="80" height="79" uuid="2a6f816b-3459-41cd-8ed6-f14a88af54a8"/>
+				<imageExpression><![CDATA[$P{IMAGE}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="140" y="0" width="410" height="30" forecolor="#213FFF" uuid="d6400ad7-2d3e-42cd-8cb5-ed0189d44205"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Dr. "+$P{NOMMED}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="358" y="30" width="192" height="20" forecolor="#828282" uuid="aa7d8f0b-0d55-4561-afe0-972d0a7955f0"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ESPECIALIDAD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="50" width="250" height="20" forecolor="#A1A1A1" uuid="37839521-dd31-44ec-bf79-e007cd603ddd"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Nº Colegiado: "+$P{CODIGO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="99">
+			<rectangle>
+				<reportElement x="0" y="4" width="549" height="86" uuid="1521f91c-6ecb-4a68-96fb-26e26cd44898"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="10" y="10" width="50" height="20" uuid="4bfa47f1-98e6-49c2-9543-0aaa291f7463"/>
+				<text><![CDATA[Nombre: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="30" width="50" height="20" uuid="f734a4c6-0e11-4a37-83bd-00438828e422"/>
+				<text><![CDATA[Dirección:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="50" width="80" height="20" uuid="3b69c937-9134-4475-bdbd-e27845f13040"/>
+				<text><![CDATA[Nº Documento: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="130" y="10" width="100" height="20" uuid="49592cb9-fda9-4155-9449-2e5d6c220466"/>
+				<textFieldExpression><![CDATA[$P{NOMPAC}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="130" y="24" width="414" height="1" uuid="daab9fb4-8375-445f-98cb-16fb3ab59694"/>
+			</line>
+			<textField>
+				<reportElement x="130" y="30" width="100" height="20" uuid="34f44bb1-61b1-41c9-894a-641ba0de3c16"/>
+				<textFieldExpression><![CDATA[$P{NOMPAC}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="130" y="45" width="414" height="1" uuid="aa39b58a-cb42-4586-b2ac-f0f2d0f2cfec"/>
+			</line>
+			<textField>
+				<reportElement x="130" y="50" width="100" height="20" uuid="fd03d49e-e7ab-4c37-bfa2-599a21aa8c56"/>
+				<textFieldExpression><![CDATA[$P{NOMPAC}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="130" y="66" width="414" height="1" uuid="be572e45-2dae-4ef9-b36e-b5ac1857000a">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="80">
+			<rectangle>
+				<reportElement x="0" y="0" width="549" height="20" forecolor="#213FFF" backcolor="#213FFF" uuid="9e8f46c5-6412-4096-b2ba-bf9aef8107fd"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="220" y="0" width="100" height="20" forecolor="#FFFFFF" uuid="ee4cc7b3-b65a-48af-ab41-5096ef9137b0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[TRATAMIENTOS]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="20" width="548" height="60" uuid="9e98d89b-bf13-4f7a-9f3d-38867a3da079"/>
+				<textFieldExpression><![CDATA[$P{TRATAMIENTO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="22">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="22" uuid="d1b5dda7-6b1e-4a6d-8300-77e1042f9694"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Firma:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="130" y="17" width="414" height="1" uuid="bd134256-6acb-4eec-b1f2-385c94a48722">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+			</line>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>
