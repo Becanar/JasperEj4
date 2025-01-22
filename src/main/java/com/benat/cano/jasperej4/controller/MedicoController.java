@@ -108,6 +108,7 @@ public class MedicoController {
             } catch (JRException e) {
                 System.err.println(e.getMessage());
                 mostrarAlerta("Ha ocurrido un error cargando el informe");
+                e.printStackTrace();
             }
 
         }
@@ -118,13 +119,15 @@ public class MedicoController {
         StringBuilder error = new StringBuilder();
 
         if (txtNum.getText().isEmpty()) {
+            error.append("El Número del Paciente no puede estar vacío!\n");
+        } else {
             try {
                 Integer.parseInt(txtNum.getText());
-                error.append("El Número del Paciente no puede estar vacío!\n");
             } catch (NumberFormatException e) {
-                error.append("El Número del Paciente no puede estar vacío y debe ser numérico!\n");
+                error.append("El Número del Paciente debe ser numérico!\n");
             }
         }
+
 
         if (txtNomPac.getText().isEmpty()) {
             error.append("El campo de nombre del paciente no puede estar vacío!\n");

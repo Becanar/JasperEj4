@@ -1,8 +1,8 @@
 module com.benat.cano.jasperej4 {
     requires javafx.controls;
-    requires javafx.fxml;
     requires java.sql;
-    requires net.sf.jasperreports.core;
+    requires jasperreports;
+    requires javafx.fxml;
 
 
     exports com.benat.cano.jasperej4.controller;
