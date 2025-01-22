@@ -14,6 +14,11 @@ import net.sf.jasperreports.view.JasperViewer;
 import java.io.InputStream;
 import java.util.HashMap;
 
+/**
+ * Controlador para la interfaz de usuario de la sección de "Médico".
+ * Maneja los eventos de la interfaz, como la generación de informes y la validación de entradas.
+ * También gestiona la interacción con el sistema de informes JasperReports.
+ */
 public class MedicoController {
 
     @FXML
@@ -81,7 +86,12 @@ public class MedicoController {
 
     @FXML
     private TextArea txtTrat;
-
+    /**
+     * Genera el informe en formato JasperReport y lo muestra en una ventana de visualización.
+     * Realiza las validaciones necesarias antes de proceder con la generación del informe.
+     *
+     * @param event El evento de acción (clic en el botón).
+     */
     @FXML
     void informe(ActionEvent event) {
         if (validar()) {
@@ -114,7 +124,12 @@ public class MedicoController {
         }
 
     }
-
+    /**
+     * Valida los datos introducidos en los campos de texto antes de generar el informe.
+     * Verifica si los campos están vacíos o contienen datos incorrectos (como números en campos de texto no numéricos).
+     *
+     * @return true si los datos son válidos, false en caso contrario.
+     */
     private boolean validar() {
         StringBuilder error = new StringBuilder();
 
@@ -178,11 +193,20 @@ public class MedicoController {
         return true;
     }
 
-
+    /**
+     * Verifica si el texto contiene números.
+     *
+     * @param texto El texto a verificar.
+     * @return true si el texto contiene números, false si no los contiene.
+     */
     private boolean contieneNumeros(String texto) {
         return texto.matches(".*\\d.*");
     }
-
+    /**
+     * Limpia todos los campos de texto en la interfaz de usuario.
+     *
+     * @param event El evento de acción (clic en el botón de limpiar).
+     */
     @FXML
     void limpiar(ActionEvent event) {
         txtCod.setText("");
@@ -193,12 +217,20 @@ public class MedicoController {
         txtNomMed.setText("");
         txtNomPac.setText("");
     }
-
+    /**
+     * Cierra la aplicación cuando el usuario hace clic en el botón de salir.
+     *
+     * @param event El evento de acción (clic en el botón de salir).
+     */
     @FXML
     void salir(ActionEvent event) {
         Platform.exit();
     }
-
+    /**
+     * Muestra una alerta con el mensaje proporcionado.
+     *
+     * @param mensaje El mensaje a mostrar en la alerta.
+     */
     private void mostrarAlerta(String mensaje) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error de validación");
